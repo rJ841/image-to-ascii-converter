@@ -48,7 +48,8 @@ function App() {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(asciiArt).then(() => alert("Copied to clipboard!"));
+    const asciiWithNbsp = asciiArt.replace(/ /g, "\u00A0");
+    navigator.clipboard.writeText(asciiWithNbsp).then(() => alert("Copied to clipboard!"));
   };
 
   const downloadAscii = () => {
@@ -56,6 +57,33 @@ function App() {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "ascii-art.txt";
+    link.click();
+  };
+
+  const downloadImage = () => {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const lines = asciiArt.split("\n");
+    const fontSize = 8;
+    const lineHeight = fontSize * 1.2;
+
+    canvas.width = Math.max(...lines.map(line => line.length)) * fontSize;
+    canvas.height = lines.length * lineHeight;
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "black";
+    ctx.font = `${fontSize}px monospace`;
+
+    lines.forEach((line, index) => {
+      ctx.fillText(line, 0, (index + 1) * lineHeight);
+    });
+
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "ascii-art.png";
     link.click();
   };
 
@@ -79,7 +107,8 @@ function App() {
 
       <div className="buttons">
         <button onClick={copyToClipboard} disabled={!asciiArt}>📋 Copy</button>
-        <button onClick={downloadAscii} disabled={!asciiArt}>⬇ Download</button>
+        <button onClick={downloadAscii} disabled={!asciiArt}>⬇ Download .txt</button>
+        <button onClick={downloadImage} disabled={!asciiArt}>⬇ Download PNG</button>
       </div>
 
       {loading && <div className="loading">⏳ Converting to ASCII...</div>}
