@@ -1,0 +1,113 @@
+/* General Styles */
+body {
+  background-color: #121212;
+  color: white;
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Main Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+/* Title */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* File Input */
+.file-input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #1e88e5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+/* ASCII Output */
+.ascii-output {
+  background: #000;
+  color: #0f0;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  font-size: 7px;
+  line-height: 0.6;
+  max-width: 80vw;
+  max-height: 60vh;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .ascii-output {
+    font-size: 5px;
+    max-width: 100%;
+    max-height: 50vh;
+  }
+
+  button {
+    padding: 8px 15px;
+  }
+}
+/* Image Preview */
+.image-preview img {
+  max-width: 300px;
+  max-height: 300px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+/* Loading Spinner */
+.loading {
+  margin-top: 20px;
+  color: #1e88e5;
+  font-size: 1.2rem;
+}
